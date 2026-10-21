@@ -266,11 +266,11 @@ export function RefHome({
           <h1 className="disp" style={{ margin: '28px 0 0', fontSize: 'clamp(54px, 8.6vw, 136px)', lineHeight: '1.06', fontWeight: '900', letterSpacing: '-1.5px' }}> <span className="ln"><span className="w" style={{ animationDelay: '1.75s' }}>{t.h1[0][0]}</span> <span className="w" style={{ animationDelay: '1.85s' }}><span className="hl" style={{ animationDelay: '2.5s' }}>{t.h1[0][1]}</span></span></span> <span className="ln"><span className="w" style={{ animationDelay: '1.95s' }}>{t.h1[1][0]}</span> <span className="w" style={{ animationDelay: '2.05s' }}>{t.h1[1][1]}</span> <span className="w ac" style={{ animationDelay: '2.15s' }}>{t.h1[1][2]}</span></span> </h1>
           <p className="lead fd" style={{ maxWidth: '620px', margin: '26px auto 0', animationDelay: '2.3s' }}>{t.lead}</p>
           <form className="fd" role="search" onSubmit={search} style={{ margin: '34px auto 0', maxWidth: '760px', display: 'flex', gap: '8px', padding: '8px', borderRadius: '999px', background: '#17151E', border: '1px solid #2C2936', animationDelay: '2.4s' }}>
-            <label style={{ flex: '1', display: 'flex', alignItems: 'center', gap: '10px', padding: '0 16px', color: '#8A859B' }}>
+            <label style={{ flex: '1', minWidth: '0', display: 'flex', alignItems: 'center', gap: '10px', padding: '0 clamp(8px, 2.5vw, 16px)', color: '#8A859B' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
               <input aria-label={t.searchLabel} placeholder={t.searchPh} value={query} onChange={(event) => setQuery(event.target.value)} style={{ flex: '1', minWidth: '0', background: 'transparent', border: '0', color: '#F5F2EA', fontFamily: 'inherit', fontSize: '16px', outline: 'none', minHeight: '52px' }} />
             </label>
-            <button type="submit" className="btn btn-acc mag">{t.search}</button>
+            <button type="submit" className="btn btn-acc mag" style={{ flex: 'none', padding: '0 clamp(18px, 4vw, 26px)' }}>{t.search}</button>
           </form>
           {chips.length ? (
             <div className="fd" style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', animationDelay: '2.5s' }}> <span style={{ color: '#8A859B', fontSize: '14px', alignSelf: 'center' }}>{t.popular}</span> {chips.map((chip) => <Link key={chip.href} className="chip" href={chip.href}>{chip.name}</Link>)} </div>

@@ -34,13 +34,20 @@ export default async function TalentPage({ params }: { params: Promise<{ locale:
   const profile = person.profile;
   if (!profile) notFound();
 
-  // One extra read-only call: people from the first category, minus this person.
+  // Similar creators: same specialty first, then the same field (parent category), then anyone —
+  // so the "similar" slider from the design is never empty while other creators exist.
   const first = profile.categories[0];
-  const similar = first
-    ? await api<Influencer[]>(`/api/v1/influencers?categoryId=${first.id}&limit=9`)
-      .then((result) => result.data.filter((item) => item.id !== person.id && item.profile))
-      .catch(() => [] as Influencer[])
-    : [];
+  const fetchPeople = (query: string) =>
+    api<Influencer[]>(`/api/v1/influencers?${query}`).then((result) => result.data).catch(() => [] as Influencer[]);
+  const [bySpecialty, byField, anyone] = await Promise.all([
+    first ? fetchPeople(`categoryId=${first.id}&limit=9`) : Promise.resolve([] as Influencer[]),
+    first?.parentId ? fetchPeople(`categoryId=${first.parentId}&limit=9`) : Promise.resolve([] as Influencer[]),
+    fetchPeople('sort=popular&limit=9'),
+  ]);
+  const seen = new Set<number>([person.id]);
+  const similar = [...bySpecialty, ...byField, ...anyone]
+    .filter((item) => item.profile && !seen.has(item.id) && seen.add(item.id))
+    .slice(0, 8);
 
   return <RefProfile locale={locale} person={person} similar={similar} />;
 }

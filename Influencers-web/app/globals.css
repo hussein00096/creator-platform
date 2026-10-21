@@ -268,7 +268,7 @@ body { margin: 0; background: #0E0D12; min-height: 100vh; }
 @supports (animation-timeline: view(inline)) {
   .hsc > * { animation: sci linear both; animation-timeline: view(inline); animation-range: entry 0% cover 35%; }
 }
-@keyframes sci { from { opacity: .35; transform: scale(.86) rotate(-2.5deg); } to { opacity: 1; transform: none; } }
+@keyframes sci { from { opacity: .35; scale: .86; rotate: -2.5deg; } to { opacity: 1; scale: 1; rotate: 0deg; } }
 @media (min-width: 1328px) { .hsc:not(.rf *) { padding-inline: calc((100vw - 1280px) / 2 + 24px); scroll-padding-inline: calc((100vw - 1280px) / 2 + 24px); } }
 
 /* ---------- forms ---------- */
@@ -374,7 +374,7 @@ html[data-pre] .pre:not(.rf *) { display: flex; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .spin:not(.rf *) { animation: spin 20s linear infinite; }
 .spin-f:not(.rf *) { animation: spin 7s linear infinite; }
-@keyframes pop { from { opacity: 0; transform: scale(.9) translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; scale: .9; translate: 0 26px; } to { opacity: 1; scale: 1; translate: 0 0; } }
 .pop:not(.rf *) { animation: pop .7s var(--ease) both; }
 @keyframes hl { from { background-size: 0% 100%; color: var(--txt); } to { background-size: 100% 100%; color: #0E0D12; } }
 .hl:not(.rf *) { display: inline-block; line-height: 1.32; background: linear-gradient(var(--acc), var(--acc)) no-repeat right center / 0% 100%; padding: 0 .16em; border-radius: .14em; animation: hl 1s var(--ease2) calc(var(--pd) + 1.9s) forwards; }
@@ -393,14 +393,14 @@ html[data-pre] .pre:not(.rf *) { display: flex; }
 .okb .burst:not(.rf *) { position: absolute; top: 50%; left: 50%; width: 18px; height: 18px; margin: -9px; color: var(--acc); }
 
 /* ---------- scroll-driven (CSS scroll timelines) ---------- */
-@keyframes rv { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+@keyframes rv { from { opacity: 0; translate: 0 60px; } to { opacity: 1; translate: 0 0; } }
 @keyframes clipup { from { clip-path: inset(100% 0 0 0 round 28px); } to { clip-path: inset(0 0 0 0 round 28px); } }
 @keyframes px { from { transform: translateY(70px); } to { transform: translateY(-70px); } }
 @keyframes pxs { from { transform: scale(1.25); } to { transform: scale(1); } }
 @keyframes hlv { from { color: #3A3646; } to { color: var(--txt); } }
 @keyframes hlvd { from { color: #C9C2B2; } to { color: #0E0D12; } }
 @keyframes linefill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-@keyframes zoomin { from { transform: scale(.82); border-radius: 80px; } to { transform: scale(1); border-radius: 40px; } }
+@keyframes zoomin { from { scale: .82; border-radius: 80px; } to { scale: 1; border-radius: 40px; } }
 @keyframes skx { from { transform: translateX(-12%); } to { transform: translateX(12%); } }
 @supports (animation-timeline: view()) {
   .rv:not(.rf *) { animation: rv linear both; animation-timeline: view(); animation-range: entry 0% cover 26%; }
@@ -415,12 +415,12 @@ html[data-pre] .pre:not(.rf *) { display: flex; }
 }
 /* browsers without scroll timelines: IntersectionObserver adds .in (see components/motion.tsx) */
 @media (prefers-reduced-motion: no-preference) {
-  .nsd:not(.still) .rv:not(.rf *) { opacity: 0; transform: translateY(60px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .nsd:not(.still) .rv:not(.rf *) { opacity: 0; translate: 0 60px; transition: opacity 1s var(--ease), translate 1s var(--ease); }
   .nsd:not(.still) .clip:not(.rf *) { clip-path: inset(100% 0 0 0 round 28px); transition: clip-path 1.2s var(--ease2); }
   .nsd:not(.still) .hlv:not(.rf *) { color: #3A3646; transition: color .8s; }
   .nsd:not(.still) .hlvd:not(.rf *) { color: #C9C2B2; transition: color .8s; }
-  .nsd:not(.still) .zoom:not(.rf *) { transform: scale(.88); border-radius: 80px; transition: transform 1.2s var(--ease), border-radius 1.2s var(--ease); }
-  .nsd:not(.still) .rv.in:not(.rf *), .nsd:not(.still) .zoom.in:not(.rf *) { opacity: 1; transform: none; }
+  .nsd:not(.still) .zoom:not(.rf *) { scale: .88; border-radius: 80px; transition: scale 1.2s var(--ease), border-radius 1.2s var(--ease); }
+  .nsd:not(.still) .rv.in:not(.rf *), .nsd:not(.still) .zoom.in:not(.rf *) { opacity: 1; translate: 0 0; scale: 1; }
   .nsd:not(.still) .zoom.in:not(.rf *) { border-radius: 40px; }
   .nsd:not(.still) .clip.in:not(.rf *) { clip-path: inset(0 0 0 0 round 28px); }
   .nsd:not(.still) .hlv.in:not(.rf *) { color: var(--txt); }
