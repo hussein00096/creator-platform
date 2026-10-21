@@ -1,0 +1,32 @@
+/* design/reference/booking — page <style> block + port extras */
+/* booking.html's <style> holds only the two common rules (body, a), already global for .rf. */
+
+/* Port extras: the steps the reference doesn't draw (details, faces, review) use its own parts. */
+.rf .bk-fields{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+.rf .bk-hint{margin:0 0 10px;color:#8A859B;font-size:14px;line-height:1.7}
+.rf .bk-err{display:block;margin-top:8px;color:#FF8A8A;font-size:14px;font-weight:500}
+.rf .inp[aria-invalid="true"]{border-color:#FF8A8A}
+.rf .bk-meter{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px}
+.rf .bk-meter em{font-style:normal;font-size:13px;color:#8A859B}
+.rf .bk-meter em[data-ok="true"]{color:var(--acc)}
+.rf .bk-search{position:relative;display:block}
+.rf .bk-search > svg{position:absolute;top:50%;right:18px;transform:translateY(-50%);color:#8A859B;pointer-events:none}
+.rf .bk-search .inp{padding-right:48px}
+.rf .opt.bk-pick{flex-direction:row;align-items:center;gap:14px;padding:12px 14px;border-radius:20px}
+.rf .bk-tick{width:24px;height:24px;border-radius:50%;border:1.5px solid #3A3646;display:flex;align-items:center;justify-content:center;flex:none;color:transparent;transition:all .25s}
+.rf .opt.bk-pick.on .bk-tick{background:var(--acc);border-color:var(--acc);color:#0E0D12}
+.rf .bk-guest{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:10px}
+.rf .bk-guest .btn:disabled,.rf .btn:disabled,.rf .ibtn:disabled{opacity:.45;cursor:not-allowed}
+.rf .ibtn:disabled:hover{background:transparent;border-color:var(--line);color:var(--txt)}
+.rf .bk-x{width:28px;height:28px;border-radius:50%;border:0;background:#24212D;color:#F5F2EA;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s,color .25s}
+.rf .bk-x:hover{background:var(--acc);color:#0E0D12}
+.rf .bk-rev{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:16px 0;border-top:1px solid #2C2936}
+.rf .bk-rev:first-child{border-top:0}
+.rf .bk-edit{border:0;background:transparent;padding:4px 0;color:var(--acc);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.rf .bk-edit:hover{color:#F5F2EA}
+.rf .bk-val{text-align:left;overflow-wrap:anywhere}
+@media (max-width: 640px){
+.rf .bk-guest{grid-template-columns:1fr}
+.rf .bk-rev{grid-template-columns:minmax(0,1fr) auto}
+.rf .bk-rev > :nth-child(2){grid-column:1 / -1;grid-row:2}
+}

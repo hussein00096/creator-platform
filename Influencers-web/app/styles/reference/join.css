@@ -1,0 +1,6 @@
+/* design/reference/join — page <style> block + port extras */
+/* join-creator.html has no page-specific rules beyond the common body{}/a{} (already global for .rf). */
+
+/* Port extras: the quick-signup card explains the real form in place of the reference's unbacked fields. */
+.rf .jr-next{margin:0;color:#B1ACBE;font-size:15px;line-height:1.85}
+.rf .jr-adult{margin:10px 0 0;color:#8A859B;font-size:13px}

@@ -1,0 +1,148 @@
+// Copy for the join landing (spec 7.6).
+// Headline markup: " / " = line break, [[word]] = highlighter sweep, {word} = accent colour.
+
+const ar = {
+  eyebrow: 'انضم إلى بريق',
+  title: 'محتواك / يستاهل [[يوصل]]',
+  lead: 'سجّل كصانع محتوى أو موديل، عرّف بنفسك وبشغلك، وبعد المراجعة يظهر ملفك للشركات المعتمدة.',
+  marquee: ['صانع محتوى', 'موديل', 'مصوّر', 'مصمّم', 'تعليق صوتي', 'UGC'],
+  ticks: [
+    'كل ملف يمر بالمراجعة قبل ما يظهر',
+    'رقمك الشخصي ما يظهر لأي زائر',
+    'السعر بالاتفاق، مو معروض على الصفحة',
+    'الطلبات توصلك عن طريق فريقنا',
+  ],
+  card: {
+    title: 'شنو نوع حسابك؟',
+    label: 'اختر نوع الحساب',
+    roles: {
+      user: 'حساب عادي',
+      creator: 'صانع محتوى / موديل',
+      brand: 'شركة',
+    },
+    next: {
+      user: 'اسمك، رقمك أو بريدك، وكلمة مرور. تطلب خدمات وتحجز مؤثرين فوراً، وتكدر تصير صانع محتوى بعدين.',
+      creator: 'تختار مجالك وتخصصك، تحچي عن أسلوبك وحساباتك، وترسل الملف للمراجعة قبل ما يظهر للناس. دقيقتين تقريباً.',
+      brand: 'تسجّل علامتك، نراجع الحساب، وبعد الاعتماد تكدر تحجز المواهب وتطلب محتوى.',
+    },
+    cta: {
+      user: 'سوّي حساب عادي',
+      creator: 'كمّل التسجيل كصانع محتوى',
+      brand: 'سجّل شركتك',
+    },
+    adult: 'التسجيل للبالغين فقط: ١٨ سنة فأكثر.',
+    have: 'عندك حساب؟',
+    login: 'سجّل دخول',
+  },
+  benefitsEyebrow: 'ليش بريق؟',
+  benefitsTitle: 'مساحة تحترم {شغلك}',
+  benefits: [
+    { title: 'ملف يليق بشغلك', text: 'صورة شخصية، غلاف يفتتح ملفك، وعشر لقطات تحكي أسلوبك. تنعرض كأعمال، مو كإعلان مبوّب.' },
+    { title: 'خصوصيتك محفوظة', text: 'رقمك هو مفتاح دخولك بس. ما يظهر لأي زائر، وكل تواصل يمر عن طريق فريق بريق.' },
+    { title: 'شركات معتمدة بس', text: 'طلبات الحجز توصل بس من حسابات شركات اجتازت المراجعة، حتى يبقى الشغل جدّي للطرفين.' },
+    { title: 'السعر بالاتفاق', text: 'ما نعرض أسعار على الصفحات. نفهم المشروع أول، ونتفق وياك على التفاصيل بوضوح.' },
+  ],
+  stepsEyebrow: 'شلون تمشي الأمور',
+  stepsTitle: 'من التسجيل / لأول {طلب}',
+  stepsLead: 'أربع محطات واضحة، وما نوعدك بشي قبل ما نفهم شغلك.',
+  steps: [
+    { title: 'سجّل ملفك', text: 'عبّي معلوماتك ومجالك وحساباتك. التسجيل ياخذ دقيقتين تقريباً.' },
+    { title: 'نراجع الحساب', text: 'فريقنا يراجع كل ملف بعناية، ونبلغك بالقرار.' },
+    { title: 'ملفك يظهر', text: 'بعد الاعتماد يظهر ملفك بدليل الوجوه، وصورك من غرفة الصور تنعرض للشركات.' },
+    { title: 'استقبل الطلبات', text: 'طلبات الشركات توصلك عن طريق فريقنا، ونتفق على التفاصيل وياك.' },
+  ],
+  catsEyebrow: 'أنواع التعاون',
+  catsTitle: 'وين يلمع {شغلك}؟',
+  specialties: 'تخصص',
+  faqEyebrow: 'قبل ما تبدأ',
+  faqTitle: 'أسئلة عن الانضمام',
+  faqLead: 'إذا ما لكيت جوابك، راسلنا وفريقنا يرد عليك.',
+  contact: 'تواصل معنا',
+  faq: [
+    { q: 'منو يكدر ينضم؟', a: 'صنّاع المحتوى، الموديلز، المصوّرين، المصمّمين وأصحاب الأصوات، بشرط يكون العمر ١٨ سنة فأكثر.' },
+    { q: 'شكد ياخذ التسجيل؟', a: 'دقيقتين تقريباً. بعد الإرسال نراجع الحساب ونبلغك بالقرار.' },
+    { q: 'هل رقمي يظهر للشركات؟', a: 'لا. رقمك هو مفتاح دخولك بس، وكل تواصل يمر عن طريق فريق بريق.' },
+    { q: 'أكدر أختار أكثر من تخصص؟', a: 'إي، تختار مجالك وبعدين تخصص واحد على الأقل، وتكدر تجمع بين أكثر من تخصص.' },
+    { q: 'وين أرفع صوري؟', a: 'بعد التسجيل، سجّل دخول بحساب الموهبة وافتح غرفة الصور. صورك تنحفظ وتظهر للشركات أول ما ينعتمد حسابك.' },
+    { q: 'أشتغل من برا العراق، أكدر أسجّل؟', a: 'إي. بالتسجيل تحدد إذا تشتغل داخل العراق أو خارجه.' },
+  ],
+  ctaEyebrow: 'جاهز؟',
+  ctaTitle: 'دورك [[تلمع]]',
+  ctaText: 'سجّل ملفك هسه، وخلّي الشركات تشوف شغلك.',
+  ctaBtn: 'انضم كصانع محتوى',
+};
+
+const en: typeof ar = {
+  eyebrow: 'Join Bareeq',
+  title: 'Your content / deserves to [[reach]]',
+  lead: 'Sign up as a creator or model, introduce yourself and your work, and once reviewed your profile is visible to approved brands.',
+  marquee: ['Creator', 'Model', 'Photographer', 'Designer', 'Voice-over', 'UGC'],
+  ticks: [
+    'Every profile is reviewed before it goes live',
+    'Your personal number is never shown to visitors',
+    'Rates are agreed, never posted on the page',
+    'Requests reach you through our team',
+  ],
+  card: {
+    title: 'What kind of account?',
+    label: 'Choose account type',
+    roles: {
+      user: 'Normal',
+      creator: 'Creator / model',
+      brand: 'Company',
+    },
+    next: {
+      user: 'Your name, phone or e-mail, and a password. Order services and book creators right away, and become a creator later if you like.',
+      creator: 'Pick your field and craft, tell us about your style and accounts, then send your profile for review before it goes public. About two minutes.',
+      brand: 'Register your company, we review the account, and once approved you can book talent and request content.',
+    },
+    cta: {
+      user: 'Create a normal account',
+      creator: 'Continue as a creator',
+      brand: 'Register your company',
+    },
+    adult: 'Adults only: 18 and over.',
+    have: 'Have an account?',
+    login: 'Sign in',
+  },
+  benefitsEyebrow: 'Why Bareeq?',
+  benefitsTitle: 'A space that respects {your work}',
+  benefits: [
+    { title: 'A profile worthy of your work', text: 'A portrait, a cover that opens your profile, and ten frames that tell your style. Shown as a body of work, not a listing.' },
+    { title: 'Your privacy, kept', text: 'Your number is only your key to sign in. No visitor sees it; all contact goes through the Bareeq team.' },
+    { title: 'Approved brands only', text: 'Booking requests only come from brand accounts that passed review, so the work stays serious for both sides.' },
+    { title: 'Rates by agreement', text: 'No prices on the pages. We understand the project first, then agree the details with you clearly.' },
+  ],
+  stepsEyebrow: 'How it works',
+  stepsTitle: 'From sign-up / to your first {request}',
+  stepsLead: 'Four clear stages, and no promises before we understand your work.',
+  steps: [
+    { title: 'Sign up', text: 'Fill in your details, field and accounts. It takes about two minutes.' },
+    { title: 'We review', text: 'Our team reviews every profile with care and lets you know the decision.' },
+    { title: 'Your profile goes live', text: 'Once approved, your profile appears in the directory and your photo-room shots are shown to brands.' },
+    { title: 'Receive requests', text: 'Brand requests reach you through our team, and we agree the details with you.' },
+  ],
+  catsEyebrow: 'Types of collaboration',
+  catsTitle: 'Where does {your work} shine?',
+  specialties: 'crafts',
+  faqEyebrow: 'Before you start',
+  faqTitle: 'Questions about joining',
+  faqLead: 'Can’t find your answer? Message us and our team will reply.',
+  contact: 'Contact us',
+  faq: [
+    { q: 'Who can join?', a: 'Creators, models, photographers, designers and voice talent, as long as you are 18 or older.' },
+    { q: 'How long does sign-up take?', a: 'About two minutes. After you send, we review the account and let you know.' },
+    { q: 'Do brands see my number?', a: 'No. Your number is only your key to sign in, and all contact goes through the Bareeq team.' },
+    { q: 'Can I pick more than one craft?', a: 'Yes. Pick your field, then at least one craft — you can combine several.' },
+    { q: 'Where do I upload my photos?', a: 'After signing up, sign in with your talent account and open the photo room. Your photos are stored and appear to brands as soon as your account is approved.' },
+    { q: 'I work outside Iraq. Can I join?', a: 'Yes. When you sign up you choose whether you work inside or outside Iraq.' },
+  ],
+  ctaEyebrow: 'Ready?',
+  ctaTitle: 'Your turn to [[shine]]',
+  ctaText: 'Sign up now and let brands see your work.',
+  ctaBtn: 'Join as creator',
+};
+
+export function getJoin(locale: string) {
+  return locale === 'en' ? en : ar;
+}

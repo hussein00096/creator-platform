@@ -1,0 +1,65 @@
+/* design/reference/auth — page <style> block + port extras */
+
+/* auth.html <style> (unchanged) */
+@keyframes mqv{to{transform:translateY(-50%)}}
+.mqv{display:flex;flex-direction:column;gap:16px;animation:mqv 30s linear infinite}
+.mqv-r{animation-direction:reverse;animation-duration:36s}
+
+/* ---- port extras (components/ref/auth*.tsx) ---- */
+/* Login / sign-up tabs are route links rendered with the reference .seg look. */
+.rf a.seg{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.rf a.seg:hover{color:var(--mut)}
+.rf a.seg.on,.rf a.seg.on:hover{color:#0E0D12}
+/* Account-type cards (sign-up) built on the reference .opt card. */
+.ra-roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.rf a.opt.ra-role{padding:16px;gap:6px;text-decoration:none;color:var(--txt)}
+.ra-role .ra-ri{width:40px;height:40px;border-radius:12px;background:#24212D;color:var(--acc);display:flex;align-items:center;justify-content:center}
+.ra-role.on .ra-ri{background:var(--acc);color:#0E0D12}
+.ra-role b{font-size:15px;font-weight:700;line-height:1.4}
+.ra-role small{font-size:12.5px;color:#8A859B;line-height:1.6}
+/* Field helpers */
+.ra-hint{margin:6px 0 0;font-size:13px;color:#8A859B;line-height:1.6}
+.ra-err{margin:0;padding:12px 16px;border-radius:14px;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.35);color:#FF9B9B;font-size:14px;line-height:1.6}
+.ra-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.ra-str{display:flex;gap:4px;margin-top:8px}
+.ra-str s{flex:1;height:4px;border-radius:4px;background:#2C2936;text-decoration:none;transition:background .3s}
+.ra-str[data-n='1'] s:nth-child(-n+1){background:#FF8A65}
+.ra-str[data-n='2'] s:nth-child(-n+2){background:var(--acc)}
+.ra-str[data-n='3'] s{background:#5BD68A}
+.ra-sec{display:flex;flex-direction:column;gap:16px}
+.ra-sec-h{display:flex;align-items:baseline;gap:12px}
+.ra-sec-h h2{margin:0;font-size:19px;font-weight:700;line-height:1.4}
+.ra-sec-h p{margin:4px 0 0;font-size:14px;color:#8A859B;line-height:1.7}
+/* Creator sign-up: step rail (reference .seg-w, scrolls on small screens). */
+.ra-steps{width:100%;overflow-x:auto;scrollbar-width:none}
+.ra-steps::-webkit-scrollbar{display:none}
+.ra-steps .seg{flex:1 0 auto;padding:0 14px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.ra-steps .seg small{font-size:12px;opacity:.7}
+.ra-steps .seg.done:not(.on){color:var(--txt)}
+.ra-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ra-tiles .opt{padding:10px;gap:8px;position:relative}
+.ra-tiles .ra-tp{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#24212D;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:var(--acc)}
+.ra-tiles .ra-tp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ra-tiles b{font-size:14px;font-weight:600;line-height:1.4}
+.ra-tiles em{position:absolute;top:16px;left:16px;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:var(--acc);color:#0E0D12;font-style:normal;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ra-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ra-note{margin:0;display:flex;gap:10px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:#17151E;border:1px solid #2C2936;color:#B1ACBE;font-size:14px;line-height:1.7}
+.ra-note svg{flex:none;color:var(--acc);margin-top:2px}
+.ra-social{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:8px;align-items:center}
+.ra-social + .ra-social{margin-top:8px}
+.ra-nav{display:flex;gap:10px}
+.ra-nav .btn{flex:1;min-height:56px}
+.ra-bar{margin-top:16px;height:4px;border-radius:4px;background:rgba(245,242,234,.12);overflow:hidden}
+.ra-bar i{display:block;height:100%;background:var(--acc);transform-origin:right;transition:transform .6s var(--ease)}
+[dir='ltr'] .ra-bar i{transform-origin:left}
+@media (max-width: 560px){
+  .ra-roles{grid-template-columns:1fr}
+  .rf a.opt.ra-role{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;row-gap:2px;align-items:center}
+  .ra-role .ra-ri{grid-row:span 2}
+  .ra-two{grid-template-columns:1fr}
+  .ra-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ra-social{grid-template-columns:120px minmax(0,1fr) auto}
+}
+.rf .ra-terms a{text-decoration:underline}
+/* 1fr track on mobile would otherwise grow to the scrolling step rail / chips min-content */
+.rf .split > .ra-form{min-width:0}

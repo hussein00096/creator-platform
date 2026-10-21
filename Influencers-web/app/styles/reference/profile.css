@@ -1,0 +1,15 @@
+/* design/reference/profile — page <style> block + port extras */
+/* profile.html has no page-specific rules beyond the two common ones (body, a), already global for .rf. */
+
+/* Port extras (real states the reference doesn't show) */
+.pf2-heart[aria-pressed="true"] { background: var(--acc) !important; border-color: var(--acc) !important; color: #0E0D12 !important; }
+.pf2-heart[aria-pressed="true"] svg { fill: currentColor; }
+.pf2-act { position: relative; }
+.pf2-note { position: absolute; top: 100%; inset-inline-start: 0; margin-top: 6px; pointer-events: none; }
+.pf2-dot { width: 8px; height: 8px; border-radius: 50%; background: #F5D33D; }
+.pf2-dot[data-state="paused"] { background: #8A859B; }
+.pf2-name > span[dir] { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 960px) {
+  /* The reference's action row clips the last button off-screen at 375px; let it wrap. */
+  .pf2-act { flex-wrap: wrap; }
+}

@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بريق — المؤثرين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="./assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800;900&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0E0D12}
+a{color:var(--acc,#FFC23D)}a:hover{color:#F5F2EA}
+@keyframes deck{0%,27%{transform:translate(0,0) rotate(-3deg) scale(1);z-index:3;opacity:1}33%,60%{transform:translate(-120px,34px) rotate(-13deg) scale(.86);z-index:1;opacity:.75}66%,94%{transform:translate(120px,34px) rotate(11deg) scale(.86);z-index:2;opacity:.75}100%{transform:translate(0,0) rotate(-3deg) scale(1);z-index:3;opacity:1}}
+.deck{position:absolute;top:50px;left:50%;margin-left:-140px;width:280px;animation:deck 10.5s cubic-bezier(.7,0,.2,1) infinite}
+.cat{position:relative;flex:none;width:200px;min-height:176px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;padding:22px;border-radius:26px;border:1.5px solid #2C2936;background:#17151E;color:#F5F2EA;font-family:inherit;text-align:right;cursor:pointer;overflow:hidden;isolation:isolate;transition:border-color .3s,color .3s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.cat::before{content:'';position:absolute;inset:0;background:var(--acc);transform:translateY(101%);transition:transform .55s cubic-bezier(.7,0,.2,1);z-index:-1}
+.cat:hover{transform:translateY(-6px);border-color:var(--acc)}
+.cat.on{color:#0E0D12;border-color:var(--acc)}
+.cat.on::before{transform:none}
+.cat .ci{width:52px;height:52px;border-radius:16px;background:#24212D;color:var(--acc);display:flex;align-items:center;justify-content:center;transition:all .4s}
+.cat.on .ci{background:#0E0D12}
+.cat .cn{font-size:13px;color:#8A859B;transition:color .3s}
+.cat.on .cn{color:#2A2733}
+.cat .cg{position:absolute;left:-14px;bottom:-26px;font-size:96px;font-weight:900;line-height:1;color:transparent;-webkit-text-stroke:1.5px #2C2936;transition:-webkit-text-stroke-color .3s}
+.cat.on .cg{-webkit-text-stroke-color:rgba(14,13,18,.25)}
+.tool{position:sticky;top:80px;z-index:40;background:rgba(14,13,18,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid #1F1D27;border-bottom:1px solid #1F1D27}
+.sw{position:relative;width:48px;height:28px;border-radius:999px;border:0;background:#2C2936;cursor:pointer;flex:none;transition:background .3s}
+.sw::after{content:'';position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background:#F5F2EA;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.sw.on{background:var(--acc)}
+.sw.on::after{transform:translateX(-20px);background:#0E0D12}
+.ck{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;padding:0 4px;background:transparent;border:0;color:#F5F2EA;font-family:inherit;font-size:15px;cursor:pointer;text-align:right}
+.ck .bx{width:22px;height:22px;border-radius:7px;border:1.5px solid #3A3646;display:flex;align-items:center;justify-content:center;color:#0E0D12;transition:all .25s;flex:none}
+.ck.on .bx{background:var(--acc);border-color:var(--acc)}
+.ck:hover .bx{border-color:var(--acc)}
+.save{position:absolute;top:14px;left:14px;z-index:3;width:44px;height:44px;border-radius:50%;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .35s cubic-bezier(.2,.8,.2,1),background .3s}
+.save:hover{transform:scale(1.12)}
+.scrim{position:absolute;right:0;left:0;bottom:0;height:46%;background:linear-gradient(to top,rgba(14,13,18,.82),rgba(14,13,18,0))}
+.thumbs{position:absolute;right:16px;left:16px;bottom:16px;display:flex;gap:8px;opacity:0;transform:translateY(14px);transition:all .5s cubic-bezier(.2,.8,.2,1)}
+.ccard:hover .thumbs{opacity:1;transform:none}
+.thumbs span{flex:1;height:58px;border-radius:12px;border:2px solid rgba(255,255,255,.18)}
+.span2{grid-column:span 2}
+.lrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;align-items:center;padding:18px;border-radius:24px;background:#17151E;border:1px solid #2C2936;text-decoration:none;color:#F5F2EA;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.lrow:hover{border-color:var(--acc);transform:translateX(-6px);color:#F5F2EA}
+@media (max-width: 960px){.span2{grid-column:auto !important}.deckw{display:none !important}.lrow{grid-template-columns:auto minmax(0,1fr)}.lrow .lend{display:none}}
+</style>
+</head>
+<body>
+<div class="bq " style="--acc: #FFC23D">
+<div class="prog" aria-hidden="true"></div>
+<div class="cur-ring" aria-hidden="true"></div>
+<div class="cur-dot" aria-hidden="true"></div>
+<svg class="grain" aria-hidden="true"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#gr)"></rect></svg>
+
+<header class="nav">
+<div class="wrap nav-in">
+<a class="logo" href="index.html">
+<svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5C12.6 7.6 16.4 11.4 22.5 12C16.4 12.6 12.6 16.4 12 22.5C11.4 16.4 7.6 12.6 1.5 12C7.6 11.4 11.4 7.6 12 1.5Z" fill="var(--acc)"></path></svg>
+<span class="disp" style="font-size: 28px; font-weight: 900">بريق</span>
+</a>
+<nav class="navl" aria-label="القائمة الرئيسية" style="display: flex; align-items: center; gap: 32px">
+<a class="nl cur" href="creators.html">المؤثرين</a>
+<a class="nl" href="brands.html">للشركات</a>
+<a class="nl" href="join-creator.html">انضم كمؤثر</a>
+<a class="nl" href="about.html">من نحن</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<button class="ibtn navl" aria-label="English" style="width: 46px; height: 46px; font-family: inherit; font-weight: 700; font-size: 14px">EN</button>
+<a class="btn btn-ghost btn-sm navl" href="auth.html">تسجيل الدخول</a>
+<a class="btn btn-acc btn-sm mag" href="auth.html">ابدأ الآن</a>
+</div>
+</div>
+</header>
+
+<!-- HERO: headline + live deck -->
+<section style="position: relative; padding: 48px 0 40px; overflow: hidden">
+<div aria-hidden="true" class="spin" style="position: absolute; left: 6%; top: 40px; width: 520px; height: 520px; border-radius: 50%; border: 1.5px dashed #2C2936"></div>
+<div class="wrap hero" style="position: relative; display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: center">
+<div>
+<div class="fd" style="display: flex; align-items: center; gap: 8px; color: #8A859B; font-size: 14px; animation-delay: .05s">
+<a href="index.html" style="color: #8A859B; text-decoration: none">البداية</a>
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+<span style="color: #F5F2EA">المؤثرين</span>
+</div>
+<h1 class="disp" style="margin: 18px 0 0; font-size: clamp(50px, 7vw, 112px); line-height: 1.06; font-weight: 900; letter-spacing: -1px">
+<span class="ln"><span class="w" style="animation-delay: .1s">كل</span> <span class="w" style="animation-delay: .2s"><span class="hl" style="animation-delay: .8s">النجوم</span></span></span>
+<span class="ln"><span class="w" style="animation-delay: .3s">بمكان</span> <span class="w" style="animation-delay: .4s">واحد</span></span>
+</h1>
+<p class="lead fd" style="margin-top: 20px; max-width: 520px; animation-delay: .5s">مؤثرين، موديلز، مصوّرين ومبدعين اجتازوا المراجعة. فلتر حسب المجال والمدينة ووصل للوجه الصح.</p>
+<div class="fd" style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 28px; animation-delay: .6s">
+<div><div class="disp" style="font-size: 34px; font-weight: 900">[العدد]</div><div style="color: #8A859B; font-size: 14px; margin-top: 2px">مبدع موثّق</div></div>
+<div style="width: 1px; background: #2C2936"></div>
+<div><div class="disp" style="font-size: 34px; font-weight: 900">٧</div><div style="color: #8A859B; font-size: 14px; margin-top: 2px">مجالات</div></div>
+<div style="width: 1px; background: #2C2936"></div>
+<div><div class="disp" style="font-size: 34px; font-weight: 900; display: flex; align-items: center; gap: 10px"><span class="live"></span>[العدد]</div><div style="color: #8A859B; font-size: 14px; margin-top: 2px">متاح هذا الأسبوع</div></div>
+</div>
+</div>
+
+<div class="deckw fd" aria-hidden="true" style="position: relative; height: 500px; animation-delay: .3s">
+
+<div class="deck" style="animation-delay: 0s">
+<div style="border-radius: 30px; overflow: hidden; background: #17151E; border: 1px solid #2C2936; box-shadow: 0 40px 80px rgba(0,0,0,.55)">
+<div class="ph" style="height: 300px; background: #2B4C7E">
+<div class="ring" style="animation: spin 18s linear infinite"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; top: 14px; right: 14px">مؤثر انستغرام</span>
+<span class="tag" style="position: absolute; top: 14px; left: 14px"><span class="live"></span>متاح</span>
+</div>
+<div style="padding: 16px 18px; display: flex; align-items: center; justify-content: space-between">
+<div><div style="display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 17px">سارة الربيعي<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span></div><div style="color: #B1ACBE; font-size: 13px; margin-top: 3px">بغداد</div></div>
+<span style="width: 40px; height: 40px; border-radius: 50%; background: var(--acc); color: #0E0D12; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7L7 17M7 8v9h9"></path></svg></span>
+</div>
+</div>
+</div>
+
+<div class="deck" style="animation-delay: -3.5s">
+<div style="border-radius: 30px; overflow: hidden; background: #17151E; border: 1px solid #2C2936; box-shadow: 0 40px 80px rgba(0,0,0,.55)">
+<div class="ph" style="height: 300px; background: #7A2E3B">
+<div class="ring" style="animation: spin 18s linear infinite"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; top: 14px; right: 14px">عارضة أزياء</span>
+<span class="tag" style="position: absolute; top: 14px; left: 14px"><span class="live"></span>متاح</span>
+</div>
+<div style="padding: 16px 18px; display: flex; align-items: center; justify-content: space-between">
+<div><div style="display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 17px">زينب حيدر<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span></div><div style="color: #B1ACBE; font-size: 13px; margin-top: 3px">البصرة</div></div>
+<span style="width: 40px; height: 40px; border-radius: 50%; background: var(--acc); color: #0E0D12; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7L7 17M7 8v9h9"></path></svg></span>
+</div>
+</div>
+</div>
+
+<div class="deck" style="animation-delay: -7s">
+<div style="border-radius: 30px; overflow: hidden; background: #17151E; border: 1px solid #2C2936; box-shadow: 0 40px 80px rgba(0,0,0,.55)">
+<div class="ph" style="height: 300px; background: #5E2B66">
+<div class="ring" style="animation: spin 18s linear infinite"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; top: 14px; right: 14px">مصممة جرافيك</span>
+<span class="tag" style="position: absolute; top: 14px; left: 14px"><span class="live"></span>متاح</span>
+</div>
+<div style="padding: 16px 18px; display: flex; align-items: center; justify-content: space-between">
+<div><div style="display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 17px">رقية سامي<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span></div><div style="color: #B1ACBE; font-size: 13px; margin-top: 3px">بغداد</div></div>
+<span style="width: 40px; height: 40px; border-radius: 50%; background: var(--acc); color: #0E0D12; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 7L7 17M7 8v9h9"></path></svg></span>
+</div>
+</div>
+</div>
+
+<div class="fl" style="--r: -4deg; position: absolute; bottom: 30px; right: 0; z-index: 5; display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 18px; background: #F5F2EA; color: #0E0D12; box-shadow: 0 20px 40px rgba(0,0,0,.45); font-weight: 700; font-size: 14px">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5C12.6 7.6 16.4 11.4 22.5 12C16.4 12.6 12.6 16.4 12 22.5C11.4 16.4 7.6 12.6 1.5 12C7.6 11.4 11.4 7.6 12 1.5Z" fill="#0E0D12"></path></svg>
+مبدعين الأسبوع
+</div>
+<div class="fl" style="--r: 5deg; position: absolute; top: 10px; left: 0; z-index: 5; padding: 12px 16px; border-radius: 18px; background: var(--acc); color: #0E0D12; box-shadow: 0 20px 40px rgba(0,0,0,.45); font-size: 14px; font-weight: 700; animation-delay: -3s">+ حجز خلال دقائق</div>
+</div>
+</div>
+</section>
+
+<!-- CATEGORY RAIL -->
+<section aria-label="المجالات" style="padding: 10px 0 36px">
+<div class="hsc" role="group" aria-label="اختر المجال" style="max-width: 1328px; margin-inline: auto">
+
+<button class="cat on" aria-pressed="true">
+<span class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"></path></svg></span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 18px; font-weight: 800; line-height: 1.35">كل المجالات</span>
+<span class="cn" style="display: block; margin-top: 4px">12 مبدع</span>
+</span>
+<span class="cg disp" aria-hidden="true"></span>
+</button>
+
+<button class="cat " aria-pressed="false">
+<span class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6a2 2 0 1 1 2 2c-1 .4-2 1-2 2v1l9 6v2H3v-2l9-6"></path></svg></span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 18px; font-weight: 800; line-height: 1.35">المودل والأزياء</span>
+<span class="cn" style="display: block; margin-top: 4px">١١ تخصص</span>
+</span>
+<span class="cg disp" aria-hidden="true">١</span>
+</button>
+
+<button class="cat " aria-pressed="false">
+<span class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h4l2-3h6l2 3h4v13H3zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path></svg></span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 18px; font-weight: 800; line-height: 1.35">التصوير والإنتاج</span>
+<span class="cn" style="display: block; margin-top: 4px">١٢ تخصص</span>
+</span>
+<span class="cg disp" aria-hidden="true">٢</span>
+</button>
+
+<button class="cat " aria-pressed="false">
+<span class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18zM2 2l7.6 7.6M11 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg></span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 18px; font-weight: 800; line-height: 1.35">الجرافيك والتصميم</span>
+<span class="cn" style="display: block; margin-top: 4px">١٠ تخصص</span>
+</span>
+<span class="cg disp" aria-hidden="true">٣</span>
+</button>
+
+<button class="cat " aria-pressed="false">
+<span class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2M12 19v3"></path></svg></span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 18px; font-weight: 800; line-height: 1.35">الصوت والإنتاج</span>
+<span class="cn" style="display: block; margin-top: 4px">٩ تخصص</span>
+</span>
+<span class="cg disp" aria-hidden="true">٤</span>
+</button>
+
+<button class="cat " aria-pressed="false">
+<span class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l6 5V5L7 10H4a1 1 0 0 0-1 1zM17 8a5 5 0 0 1 0 8"></path></svg></span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 18px; font-weight: 800; line-height: 1.35">التسويق والإعلانات</span>
+<span class="cn" style="display: block; margin-top: 4px">١٠ تخصص</span>
+</span>
+<span class="cg disp" aria-hidden="true">٥</span>
+</button>
+
+<button class="cat " aria-pressed="false">
+<span class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h20v14H2zM2 8l4-6M10 8l4-6M18 8l4-6"></path></svg></span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 18px; font-weight: 800; line-height: 1.35">الإنتاج والدعم الفني</span>
+<span class="cn" style="display: block; margin-top: 4px">١٠ تخصص</span>
+</span>
+<span class="cg disp" aria-hidden="true">٦</span>
+</button>
+
+<button class="cat " aria-pressed="false">
+<span class="ci"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"></path></svg></span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 18px; font-weight: 800; line-height: 1.35">المؤثرين وصناعة المحتوى</span>
+<span class="cn" style="display: block; margin-top: 4px">٩ تخصص</span>
+</span>
+<span class="cg disp" aria-hidden="true">٧</span>
+</button>
+
+</div>
+</section>
+
+<!-- STICKY TOOLBAR -->
+<div class="tool">
+<div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 14px; padding-bottom: 14px">
+<div role="search" style="flex: 1 1 340px; display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 18px; padding-right: 18px; min-height: 56px; border-radius: 999px; background: #17151E; border: 1px solid #2C2936; color: #8A859B">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+<input aria-label="ابحث باسم المؤثر أو الموهبة" placeholder="ابحث باسم المؤثر أو الموهبة…" style="flex: 1; min-width: 0; background: transparent; border: 0; color: #F5F2EA; font-family: inherit; font-size: 16px; outline: none; min-height: 44px">
+<button class="btn btn-acc btn-sm" style="min-height: 44px">ابحث</button>
+</div>
+<div class="seg-w" role="group" aria-label="الموقع">
+
+<button class="seg on" aria-pressed="true">في كل مكان</button>
+
+<button class="seg " aria-pressed="false">داخل العراق</button>
+
+<button class="seg " aria-pressed="false">خارج العراق</button>
+
+</div>
+<label style="display: flex; align-items: center; gap: 8px; color: #B1ACBE; font-size: 14px">
+<span class="hide-m">ترتيب</span>
+<select class="inp" style="width: 170px; min-height: 52px; border-radius: 999px"><option>الأكثر طلباً</option><option>الأحدث</option><option>الأعلى تقييماً</option></select>
+</label>
+<div class="seg-w" role="group" aria-label="طريقة العرض">
+<button class="seg on" aria-label="عرض شبكي" aria-pressed="true" style="padding: 0 14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"></path></svg></button>
+<button class="seg " aria-label="عرض قائمة" aria-pressed="false" style="padding: 0 14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path></svg></button>
+</div>
+</div>
+</div>
+
+<!-- BODY -->
+<section style="padding: 36px 0 90px">
+<div class="wrap split" style="display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 36px; align-items: start">
+
+<aside class="side" aria-label="الفلاتر" style="position: sticky; top: 176px; display: flex; flex-direction: column; gap: 14px">
+<div class="card" style="padding: 22px; border-radius: 26px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h2 class="disp" style="margin: 0; font-size: 20px; font-weight: 800">الفلاتر</h2>
+<button style="background: transparent; border: 0; color: var(--acc); font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; min-height: 44px">مسح الكل</button>
+</div>
+<div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px">
+<span><span style="display: block; font-weight: 600; font-size: 15px">موثّق فقط</span><span style="display: block; font-size: 13px; color: #8A859B">حسابات مراجَعة من فريقنا</span></span>
+<button class="sw " role="switch" aria-checked="false" aria-label="موثّق فقط"></button>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px">
+<span><span style="display: block; font-weight: 600; font-size: 15px">متاح هذا الأسبوع</span><span style="display: block; font-size: 13px; color: #8A859B">يقبل حجوزات جديدة</span></span>
+<button class="sw " role="switch" aria-checked="false" aria-label="متاح هذا الأسبوع"></button>
+</div>
+</div>
+</div>
+
+<div class="card" style="padding: 22px; border-radius: 26px">
+<div class="lbl" style="margin: 0 0 6px">المدينة</div>
+
+<button class="ck " role="checkbox" aria-checked="false">
+<span style="display: flex; align-items: center; gap: 12px"><span class="bx"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>بغداد</span>
+<span style="font-size: 13px; color: #8A859B">4</span>
+</button>
+
+<button class="ck " role="checkbox" aria-checked="false">
+<span style="display: flex; align-items: center; gap: 12px"><span class="bx"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>البصرة</span>
+<span style="font-size: 13px; color: #8A859B">2</span>
+</button>
+
+<button class="ck " role="checkbox" aria-checked="false">
+<span style="display: flex; align-items: center; gap: 12px"><span class="bx"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>أربيل</span>
+<span style="font-size: 13px; color: #8A859B">1</span>
+</button>
+
+<button class="ck " role="checkbox" aria-checked="false">
+<span style="display: flex; align-items: center; gap: 12px"><span class="bx"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>النجف</span>
+<span style="font-size: 13px; color: #8A859B">1</span>
+</button>
+
+<button class="ck " role="checkbox" aria-checked="false">
+<span style="display: flex; align-items: center; gap: 12px"><span class="bx"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>كربلاء</span>
+<span style="font-size: 13px; color: #8A859B">1</span>
+</button>
+
+<button class="ck " role="checkbox" aria-checked="false">
+<span style="display: flex; align-items: center; gap: 12px"><span class="bx"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span>السليمانية</span>
+<span style="font-size: 13px; color: #8A859B">1</span>
+</button>
+
+<button style="margin-top: 6px; background: transparent; border: 0; color: var(--acc); font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; min-height: 44px; padding: 0 4px">عرض كل المحافظات +</button>
+</div>
+
+<div class="card" style="padding: 22px; border-radius: 26px">
+<div class="lbl" style="margin: 0 0 12px">المنصة</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+
+<button class="chip " aria-pressed="false" style="min-height: 40px; padding: 0 14px; font-size: 14px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #FF4F9A"></span>انستغرام</button>
+
+<button class="chip " aria-pressed="false" style="min-height: 40px; padding: 0 14px; font-size: 14px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #46E3C8"></span>تيك توك</button>
+
+<button class="chip " aria-pressed="false" style="min-height: 40px; padding: 0 14px; font-size: 14px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #FF5A4A"></span>يوتيوب</button>
+
+<button class="chip " aria-pressed="false" style="min-height: 40px; padding: 0 14px; font-size: 14px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #3D8BFF"></span>بيهانس</button>
+
+</div>
+<div class="lbl" style="margin: 20px 0 10px">الميزانية (د.ع)</div>
+<div style="display: flex; gap: 8px">
+<input class="inp" aria-label="من" placeholder="من" inputmode="numeric" style="min-height: 46px">
+<input class="inp" aria-label="إلى" placeholder="إلى" inputmode="numeric" style="min-height: 46px">
+</div>
+</div>
+</aside>
+
+<div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 22px">
+<div>
+<div class="disp" style="font-size: 26px; font-weight: 900">12 <span style="color: #8A859B; font-weight: 700">نتيجة</span></div>
+<div style="color: #8A859B; font-size: 14px; margin-top: 2px">كل المجالات</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+
+</div>
+</div>
+
+
+
+<!-- GRID VIEW -->
+
+<div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+
+
+
+<div class="ccard span2 pop" style="flex-direction: row; flex-wrap: wrap; animation-delay: 0.00s">
+<a class="ph" href="profile.html" aria-label="ملف سارة الربيعي" style="flex: 1 1 260px; min-height: 380px; background: #2B4C7E">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span style="position: absolute; top: 16px; right: 16px; display: inline-flex; align-items: center; gap: 6px; background: var(--acc); color: #0E0D12; font-size: 13px; font-weight: 700; padding: 7px 12px; border-radius: 999px">
+<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5C12.6 7.6 16.4 11.4 22.5 12C16.4 12.6 12.6 16.4 12 22.5C11.4 16.4 7.6 12.6 1.5 12C7.6 11.4 11.4 7.6 12 1.5Z" fill="#0E0D12"></path></svg>
+مختار الأسبوع</span>
+</a>
+<div style="flex: 1 1 260px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px">
+<div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="tag-l">مؤثر انستغرام</span><span class="tag-l">بغداد</span></div>
+<h3 class="disp" style="margin: 16px 0 0; display: flex; align-items: center; gap: 10px; font-size: 34px; font-weight: 900; line-height: 1.2">سارة الربيعي<span class="vf" style="width: 26px; height: 26px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></h3>
+<p style="margin: 10px 0 0; color: #B1ACBE; font-size: 15px; line-height: 1.8">[نبذة قصيرة عن المبدع وأبرز أعماله]</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px" aria-hidden="true">
+<span style="height: 76px; border-radius: 14px; background: #2B4C7E"></span><span style="height: 76px; border-radius: 14px; background: #24525E"></span><span style="height: 76px; border-radius: 14px; background: #2F5A3A"></span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a class="btn btn-acc mag" href="booking.html">احجز تعاون</a>
+<a class="btn btn-ghost" href="profile.html">شاهد الملف</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.06s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف زينب حيدر" style="aspect-ratio: 4 / 4.4; background: #7A2E3B">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">عارضة أزياء</span>
+<span class="tag" style="position: absolute; bottom: 16px; right: 16px"><span class="live"></span>متاح</span>
+<span class="thumbs" aria-hidden="true"><span style="background: #6B4A1F"></span><span style="background: #7A4A2E"></span><span style="background: #6A2F4A"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">زينب حيدر<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+البصرة · انستغرام
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">أزياء</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">إعلانات</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.12s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف مصطفى رعد" style="aspect-ratio: 4 / 4.4; background: #6B4A1F">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">مصوّر</span>
+
+<span class="thumbs" aria-hidden="true"><span style="background: #5E2B66"></span><span style="background: #4A2F5E"></span><span style="background: #2A3F66"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">مصطفى رعد<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+أربيل · انستغرام
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">تصوير منتجات</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">فعاليات</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.18s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف نور الهدى" style="aspect-ratio: 4 / 4.4; background: #3B2F7A">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">صانعة محتوى</span>
+<span class="tag" style="position: absolute; bottom: 16px; right: 16px"><span class="live"></span>متاح</span>
+<span class="thumbs" aria-hidden="true"><span style="background: #24525E"></span><span style="background: #2F5A3A"></span><span style="background: #3B2F7A"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">نور الهدى<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+بغداد · تيك توك
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">جمال</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">ريلز</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<a class="pop" href="join-creator.html" style="position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 420px; padding: 28px; border-radius: 28px; background: var(--acc); color: #0E0D12; text-decoration: none; animation-delay: 0.3s">
+<svg class="spin" aria-hidden="true" style="position: absolute; left: -70px; bottom: -70px; opacity: .2" width="260" height="260" viewBox="0 0 24 24"><path d="M12 1.5C12.6 7.6 16.4 11.4 22.5 12C16.4 12.6 12.6 16.4 12 22.5C11.4 16.4 7.6 12.6 1.5 12C7.6 11.4 11.4 7.6 12 1.5Z" fill="#0E0D12"></path></svg>
+<span style="position: relative; font-weight: 700; font-size: 14px">للمبدعين</span>
+<span style="position: relative">
+<span class="disp" style="display: block; font-size: 34px; font-weight: 900; line-height: 1.2">انت مبدع؟<br>مكانك هنا.</span>
+<span style="display: block; margin-top: 10px; font-size: 15px; color: #2A2733; line-height: 1.7">أنشئ ملفك واستقبل عروض الشركات مباشرة.</span>
+</span>
+<span class="btn btn-dark" style="position: relative; align-self: flex-start">انضم مجاناً<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></span>
+</a>
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.24s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف علي كاظم" style="aspect-ratio: 4 / 4.4; background: #1F5A4E">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">مصوّر فيديو</span>
+<span class="tag" style="position: absolute; bottom: 16px; right: 16px"><span class="live"></span>متاح</span>
+<span class="thumbs" aria-hidden="true"><span style="background: #7A4A2E"></span><span style="background: #6A2F4A"></span><span style="background: #7A2E3B"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">علي كاظم</a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+النجف · يوتيوب
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">مونتاج</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">إعلانات</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.30s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف رقية سامي" style="aspect-ratio: 4 / 4.4; background: #5E2B66">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">مصممة جرافيك</span>
+<span class="tag" style="position: absolute; bottom: 16px; right: 16px"><span class="live"></span>متاح</span>
+<span class="thumbs" aria-hidden="true"><span style="background: #4A2F5E"></span><span style="background: #2A3F66"></span><span style="background: #1F5A4E"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">رقية سامي<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+بغداد · بيهانس
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">هوية بصرية</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">سوشيال</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.36s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف حسن جاسم" style="aspect-ratio: 4 / 4.4; background: #24525E">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">معلّق صوتي</span>
+
+<span class="thumbs" aria-hidden="true"><span style="background: #2F5A3A"></span><span style="background: #3B2F7A"></span><span style="background: #2B4C7E"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">حسن جاسم<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+كربلاء · ساوندكلاود
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">تعليق إعلاني</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">بودكاست</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.42s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف دانيا رائد" style="aspect-ratio: 4 / 4.4; background: #6A2F4A">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">موديل</span>
+<span class="tag" style="position: absolute; bottom: 16px; right: 16px"><span class="live"></span>متاح</span>
+<span class="thumbs" aria-hidden="true"><span style="background: #6A2F4A"></span><span style="background: #7A2E3B"></span><span style="background: #6B4A1F"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">دانيا رائد<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+دبي · انستغرام
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">جمال</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">تصوير</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.48s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف كرار علي" style="aspect-ratio: 4 / 4.4; background: #2F5A3A">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">مدير حملات</span>
+<span class="tag" style="position: absolute; bottom: 16px; right: 16px"><span class="live"></span>متاح</span>
+<span class="thumbs" aria-hidden="true"><span style="background: #2A3F66"></span><span style="background: #1F5A4E"></span><span style="background: #5E2B66"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">كرار علي</a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+البصرة · لينكدإن
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">إعلانات ممولة</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">استراتيجية</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.48s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف أحمد صباح" style="aspect-ratio: 4 / 4.4; background: #2A3F66">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">فني إضاءة</span>
+
+<span class="thumbs" aria-hidden="true"><span style="background: #3B2F7A"></span><span style="background: #2B4C7E"></span><span style="background: #24525E"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">أحمد صباح<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+بغداد · انستغرام
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">إضاءة</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">تجهيز موقع</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.48s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف مريم فاضل" style="aspect-ratio: 4 / 4.4; background: #7A4A2E">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">مؤثرة سفر</span>
+<span class="tag" style="position: absolute; bottom: 16px; right: 16px"><span class="live"></span>متاح</span>
+<span class="thumbs" aria-hidden="true"><span style="background: #7A2E3B"></span><span style="background: #6B4A1F"></span><span style="background: #7A4A2E"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">مريم فاضل<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+إسطنبول · يوتيوب
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">سفر</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">فلوغ</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="ccard tilt pop" style="animation-delay: 0.48s">
+<button class="save" aria-label="حفظ" aria-pressed="false" style="background: rgba(14,13,18,.55); color: #F5F2EA">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+</button>
+<a class="ph" href="profile.html" aria-label="ملف يوسف عمار" style="aspect-ratio: 4 / 4.4; background: #4A2F5E">
+<div class="ring" aria-hidden="true"></div>
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="scrim" aria-hidden="true"></span>
+<span class="tag" style="position: absolute; top: 16px; right: 16px">موشن ديزاينر</span>
+<span class="tag" style="position: absolute; bottom: 16px; right: 16px"><span class="live"></span>متاح</span>
+<span class="thumbs" aria-hidden="true"><span style="background: #1F5A4E"></span><span style="background: #5E2B66"></span><span style="background: #4A2F5E"></span></span>
+</a>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div>
+<a href="profile.html" style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #F5F2EA; text-decoration: none">يوسف عمار<span class="vf"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span></a>
+<div style="margin-top: 4px; color: #B1ACBE; font-size: 14px; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+السليمانية · بيهانس
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="tag-l" style="font-size: 12px; padding: 4px 10px">موشن</span><span class="tag-l" style="font-size: 12px; padding: 4px 10px">ثري دي</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid #2C2936">
+<span style="font-size: 13px; color: #8A859B">يبدأ من <strong style="color: #F5F2EA; font-size: 15px">[السعر]</strong></span>
+<a class="btn btn-ghost btn-sm" href="booking.html" style="min-height: 40px; padding: 0 14px; font-size: 14px">احجز</a>
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+
+<!-- LIST VIEW -->
+
+
+
+<div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<div style="width: 240px; height: 4px; border-radius: 4px; background: #2C2936; overflow: hidden"><div style="width: 35%; height: 100%; background: var(--acc)"></div></div>
+<span style="color: #8A859B; font-size: 14px">عرضنا 12 من [العدد]</span>
+<button class="btn btn-ghost mag">عرض المزيد
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="padding: 0 0 96px">
+<div class="wrap">
+<div class="zoom" style="position: relative; overflow: hidden; background: #F5F2EA; color: #0E0D12; border-radius: 40px; padding: 56px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px">
+<div aria-hidden="true" class="spin" style="position: absolute; left: 22%; top: -120px; width: 300px; height: 300px; border-radius: 50%; border: 2px dashed #C9C2B2"></div>
+<div style="position: relative">
+<h2 class="disp" style="margin: 0; font-size: clamp(30px, 3.6vw, 50px); font-weight: 900; line-height: 1.2">ما تعرف منو تختار؟</h2>
+<p style="margin: 10px 0 0; font-size: 17px; color: #4E4A5C">احچيلنا عن حملتك ونرشّح لك أنسب المبدعين خلال ٢٤ ساعة.</p>
+</div>
+<a class="btn btn-dark mag" href="booking.html" style="position: relative">اطلب ترشيحات<svg class="arr" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></a>
+</div>
+</div>
+</section>
+
+<footer style="border-top: 1px solid #1F1D27; padding: 44px 0 36px">
+<div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
+<a class="logo" href="index.html"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5C12.6 7.6 16.4 11.4 22.5 12C16.4 12.6 12.6 16.4 12 22.5C11.4 16.4 7.6 12.6 1.5 12C7.6 11.4 11.4 7.6 12 1.5Z" fill="var(--acc)"></path></svg><span class="disp" style="font-size: 24px; font-weight: 900">بريق</span></a>
+<nav aria-label="روابط التذييل" style="display: flex; flex-wrap: wrap; gap: 24px">
+<a class="nl" href="creators.html">المؤثرين</a><a class="nl" href="brands.html">للشركات</a><a class="nl" href="join-creator.html">انضم كمؤثر</a><a class="nl" href="about.html">من نحن</a>
+</nav>
+<span style="color: #8A859B; font-size: 14px">© 2026 بريق</span>
+</div>
+</footer>
+</div>
+<script src="./assets/motion.js" defer></script>
+</body>
+</html>

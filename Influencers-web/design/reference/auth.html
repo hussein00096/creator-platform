@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بريق — الدخول</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="./assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800;900&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0E0D12}
+a{color:var(--acc,#FFC23D)}a:hover{color:#F5F2EA}
+@keyframes mqv{to{transform:translateY(-50%)}}
+.mqv{display:flex;flex-direction:column;gap:16px;animation:mqv 30s linear infinite}
+.mqv-r{animation-direction:reverse;animation-duration:36s}
+</style>
+</head>
+<body>
+<div class="bq " style="--acc: #FFC23D">
+<div class="cur-ring" aria-hidden="true"></div>
+<div class="cur-dot" aria-hidden="true"></div>
+<svg class="grain" aria-hidden="true"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#gr)"></rect></svg>
+
+<div class="split" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 1100px">
+
+<!-- FORM -->
+<div style="padding: 40px 24px; display: flex; flex-direction: column">
+<a class="logo" href="index.html" style="align-self: flex-start; margin-inline-start: max(0px, calc((100% - 480px) / 2))">
+<svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5C12.6 7.6 16.4 11.4 22.5 12C16.4 12.6 12.6 16.4 12 22.5C11.4 16.4 7.6 12.6 1.5 12C7.6 11.4 11.4 7.6 12 1.5Z" fill="var(--acc)"></path></svg>
+<span class="disp" style="font-size: 28px; font-weight: 900">بريق</span>
+</a>
+<div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 0">
+<div style="width: 100%; max-width: 480px">
+<h1 class="disp" style="margin: 0; font-size: clamp(38px, 4vw, 56px); font-weight: 900; line-height: 1.15">
+<span class="ln"><span class="w" style="animation-delay: .1s">هلا بيك من جديد</span></span>
+</h1>
+<p class="lead fd" style="margin-top: 10px; font-size: 17px; animation-delay: .25s">سجّل دخولك وكمّل من وين ما وكفت.</p>
+
+<div class="seg-w fd" role="tablist" aria-label="الدخول أو التسجيل" style="margin-top: 28px; width: 100%; animation-delay: .35s">
+<button role="tab" aria-selected="true" class="seg on" style="flex: 1">تسجيل الدخول</button>
+<button role="tab" aria-selected="false" class="seg " style="flex: 1">حساب جديد</button>
+</div>
+
+<form class="fd" style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px; animation-delay: .45s">
+
+<label><span class="lbl">البريد الإلكتروني أو رقم الهاتف</span><input class="inp" placeholder="name@example.com" style="direction: ltr; text-align: right"></label>
+<label><span class="lbl">كلمة المرور</span><input class="inp" type="password" placeholder="••••••••" style="direction: ltr; text-align: right"></label>
+
+<div style="display: flex; align-items: center; justify-content: space-between; font-size: 14px">
+<label style="display: flex; align-items: center; gap: 8px; color: #B1ACBE; cursor: pointer; min-height: 44px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--acc)">تذكرني</label>
+<a href="auth.html">نسيت كلمة المرور؟</a>
+</div>
+
+<a class="btn btn-acc mag" href="dashboard.html" style="width: 100%; min-height: 56px; margin-top: 4px">دخول<svg class="arr" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></a>
+<div style="display: flex; align-items: center; gap: 14px; color: #8A859B; font-size: 14px; margin: 6px 0"><span style="flex: 1; height: 1px; background: #2C2936"></span>أو<span style="flex: 1; height: 1px; background: #2C2936"></span></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+<button type="button" class="btn btn-ghost" style="min-height: 52px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 12h8"></path></svg>
+المتابعة بجوجل</button>
+<button type="button" class="btn btn-ghost" style="min-height: 52px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"></rect><path d="M11 18h2"></path></svg>
+رمز عبر SMS</button>
+</div>
+<p style="margin: 6px 0 0; color: #8A859B; font-size: 13px; text-align: center; line-height: 1.7">بالمتابعة، انت توافق على <a href="about.html">الشروط</a> و<a href="about.html">سياسة الخصوصية</a>.</p>
+</form>
+</div>
+</div>
+</div>
+
+<!-- VISUAL -->
+<div class="hide-m" aria-hidden="true" style="position: relative; margin: 16px; border-radius: 40px; overflow: hidden; background: var(--acc)">
+<div style="position: absolute; inset: -40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; transform: rotate(-8deg) scale(1.15); padding: 0 16px">
+<div style="overflow: hidden"><div class="mqv">
+
+<div class="ph" style="height: 260px; border-radius: 24px; background: #3B2F7A; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">جمال</span>
+</div>
+
+<div class="ph" style="height: 260px; border-radius: 24px; background: #1F5A4E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">طعام</span>
+</div>
+
+<div class="ph" style="height: 260px; border-radius: 24px; background: #7A2E3B; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">أزياء</span>
+</div>
+
+<div class="ph" style="height: 260px; border-radius: 24px; background: #2B4C7E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">تقنية</span>
+</div>
+
+<div class="ph" style="height: 260px; border-radius: 24px; background: #3B2F7A; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">جمال</span>
+</div>
+
+<div class="ph" style="height: 260px; border-radius: 24px; background: #1F5A4E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">طعام</span>
+</div>
+
+<div class="ph" style="height: 260px; border-radius: 24px; background: #7A2E3B; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">أزياء</span>
+</div>
+
+<div class="ph" style="height: 260px; border-radius: 24px; background: #2B4C7E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">تقنية</span>
+</div>
+
+</div></div>
+<div style="overflow: hidden"><div class="mqv mqv-r">
+
+<div class="ph" style="height: 300px; border-radius: 24px; background: #2B4C7E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">تقنية</span>
+</div>
+
+<div class="ph" style="height: 300px; border-radius: 24px; background: #6B4A1F; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">لايف ستايل</span>
+</div>
+
+<div class="ph" style="height: 300px; border-radius: 24px; background: #5E2B66; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">ألعاب</span>
+</div>
+
+<div class="ph" style="height: 300px; border-radius: 24px; background: #24525E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">سفر</span>
+</div>
+
+<div class="ph" style="height: 300px; border-radius: 24px; background: #2B4C7E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">تقنية</span>
+</div>
+
+<div class="ph" style="height: 300px; border-radius: 24px; background: #6B4A1F; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">لايف ستايل</span>
+</div>
+
+<div class="ph" style="height: 300px; border-radius: 24px; background: #5E2B66; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">ألعاب</span>
+</div>
+
+<div class="ph" style="height: 300px; border-radius: 24px; background: #24525E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">سفر</span>
+</div>
+
+</div></div>
+<div style="overflow: hidden"><div class="mqv" style="animation-duration: 26s">
+
+<div class="ph" style="height: 240px; border-radius: 24px; background: #5E2B66; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">ألعاب</span>
+</div>
+
+<div class="ph" style="height: 240px; border-radius: 24px; background: #24525E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">سفر</span>
+</div>
+
+<div class="ph" style="height: 240px; border-radius: 24px; background: #7A4A2E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">رياضة</span>
+</div>
+
+<div class="ph" style="height: 240px; border-radius: 24px; background: #3B2F7A; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">جمال</span>
+</div>
+
+<div class="ph" style="height: 240px; border-radius: 24px; background: #5E2B66; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">ألعاب</span>
+</div>
+
+<div class="ph" style="height: 240px; border-radius: 24px; background: #24525E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">سفر</span>
+</div>
+
+<div class="ph" style="height: 240px; border-radius: 24px; background: #7A4A2E; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">رياضة</span>
+</div>
+
+<div class="ph" style="height: 240px; border-radius: 24px; background: #3B2F7A; flex: none">
+<svg class="sil" viewBox="0 0 200 230" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="86" r="44" fill="rgba(255,255,255,.2)"></circle><path d="M14 230c4-62 42-100 86-100s82 38 86 100z" fill="rgba(255,255,255,.2)"></path></svg>
+<span class="tag" style="position: absolute; bottom: 12px; right: 12px">جمال</span>
+</div>
+
+</div></div>
+</div>
+<div style="position: absolute; right: 32px; left: 32px; bottom: 32px; padding: 28px; border-radius: 28px; background: rgba(14,13,18,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); color: #F5F2EA">
+<div class="disp" style="font-size: 30px; font-weight: 900; line-height: 1.3">نجوم المحتوى العراقي،<br>بانتظار علامتك.</div>
+<div style="margin-top: 10px; color: #B1ACBE; font-size: 15px">مؤثرين وموديلز من كل المحافظات.</div>
+</div>
+</div>
+</div>
+</div>
+<script src="./assets/motion.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/* Home page (spec 7.1) */
+.hm-hero { position: relative; padding: clamp(56px, 8vw, 104px) 0 24px; overflow: hidden; }
+.hm-pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--mut); font-size: 14px; font-weight: 500; line-height: 1.5; margin-bottom: 28px; max-width: 100%; }
+.hm-title { max-width: 1240px; }
+.hm-lead { max-width: 620px; margin-top: 26px; }
+.hm-search { position: relative; display: flex; align-items: center; gap: 8px; width: min(640px, 100%); margin-top: 36px; padding: 6px; padding-inline-start: 54px; border-radius: 999px; background: var(--card); border: 1.5px solid var(--line); transition: border-color .25s, box-shadow .25s; }
+.hm-search:focus-within { border-color: var(--acc); box-shadow: 0 0 0 4px color-mix(in srgb, var(--acc) 22%, transparent); }
+.hm-search-i { position: absolute; inset-inline-start: 20px; color: var(--mut); }
+.hm-search input { flex: 1; min-width: 0; min-height: 52px; background: transparent; border: 0; outline: none; color: var(--txt); font-family: inherit; font-size: 16px; }
+.hm-search input::placeholder { color: #7D788F; }
+.hm-search input:focus-visible { outline: none; }
+.hm-chips { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-top: 22px; }
+.hm-chips > span { color: var(--dim); font-size: 14px; margin-inline-end: 4px; }
+.hm-star { position: absolute; top: 18%; inset-inline-end: 8%; opacity: .9; }
+.hm-ring { position: absolute; width: 220px; height: 220px; border-radius: 50%; border: 1.5px dashed var(--line); top: 40%; inset-inline-start: -60px; }
+.hm-wall { margin-top: 8px; padding-bottom: 24px; }
+
+.hm-filter { scrollbar-width: none; }
+.hm-filter::-webkit-scrollbar { display: none; }
+
+.hm-bands { padding: 64px 0 96px; overflow: hidden; }
+
+.hm-step { padding: 32px; min-height: 300px; display: flex; flex-direction: column; gap: 10px; }
+.hm-step-n { font-family: var(--f-body), sans-serif; font-size: 96px; line-height: 1; font-weight: 700; margin-bottom: auto; -webkit-text-stroke-width: 2px; }
+.hm-step p { margin: 0; color: #4E4A5C; line-height: 1.8; }
+
+.bento:not(.rf *) { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.hm-b { grid-column: span 2; padding: 28px; min-height: 300px; display: flex; flex-direction: column; text-decoration: none; }
+.hm-b-big { grid-column: span 4; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: end; }
+.hm-b-acc { justify-content: space-between; gap: 18px; transition: transform .5s var(--ease); }
+.hm-b-acc:hover { transform: translateY(-6px); color: #0E0D12; }
+.hm-b-acc .eyebrow:not(.rf *), .panel-acc .eyebrow:not(.rf *) { color: #0E0D12; }
+.panel-acc .eyebrow:not(.rf *)::before { background: #0E0D12; }
+.hm-camp { background: var(--card2); border: 1px solid var(--line); border-radius: 22px; padding: 10px; }
+.hm-camp small { display: block; color: var(--dim); font-size: 12px; padding: 4px 10px 8px; }
+.hm-camp > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 10px; border-top: 1px solid var(--line); font-size: 15px; }
+.hm-bars { display: flex; align-items: flex-end; gap: 8px; height: 110px; margin-bottom: auto; padding-bottom: 20px; }
+.hm-bars i { flex: 1; border-radius: 8px 8px 4px 4px; background: var(--line); }
+.hm-bars i:last-child { background: var(--acc); }
+
+.hm-statement { margin: 0; font-size: clamp(36px, 5.4vw, 84px); font-weight: 900; line-height: 1.2; letter-spacing: -.5px; color: var(--txt); max-width: 1150px; }
+
+.hm-cta { position: relative; overflow: hidden; min-height: 380px; padding: clamp(32px, 4vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: 22px; }
+.hm-cta .h2:not(.rf *) { margin: 0; max-width: 520px; }
+.hm-cta-star { position: absolute; bottom: -24px; inset-inline-end: -24px; opacity: .14; }
+
+@media (max-width: 960px) {
+  .hm-b-big { grid-template-columns: 1fr; }
+  .hm-step { min-height: 0; }
+  .hm-star, .hm-ring { display: none; }
+}

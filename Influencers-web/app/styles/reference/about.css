@@ -1,0 +1,6 @@
+/* design/reference/about — page <style> block + port extras */
+/* about.html's <style> holds only the two common rules (body{…}, a{…}), already global for .rf. */
+
+/* Port extras: contact cards/chips that link to real channels keep the card's text colour. */
+.rf a.ab-ln, .rf a.ab-ln:hover { color: var(--txt); text-decoration: none; }
+.rf a.ab-chip { color: var(--txt); }
